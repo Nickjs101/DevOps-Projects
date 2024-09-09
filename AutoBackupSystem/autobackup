@@ -1,3 +1,35 @@
 #!/usr/bin/env bash
 
+# Compress ./Documents/S3Backup
+FILES_DIR="$HOME/Documents/SAVEFILES"
+S3BACKUPS_DIR="$HOME/Documents/S3Backup"
+S3BUCKET="s3://mybackupbucket"
+
+current_date=$(date +"%F")
+
+backup_name="Backup_$current_date.tar.gz"
+
+tar -czvf "$S3BACKUPS_DIR/$backup_name" -C "$FILES_DIR" . || { echo "Compression Failed!"; exit 1; }
+
+echo "Files has been compressed!"
+
+#Encrypt
+echo "Start encrypting..."
+
+gpg --encrypt --recipient nickjoshuamontemayor0121@gmail.com "$S3BACKUPS_DIR/$backup_name" || { echo "Encryption Failed!"; exit 1; }
+
+echo "Back-up encrypted!"
+rm "$S3BACKUPS_DIR/$backup_name"
+
+#Send to S3 Bucket
+echo "Syncing Back-ups to S3..."
+
+aws s3 sync $S3BACKUPS_DIR $S3BUCKET -delete || { echo "Syncing Failed!"; exit 1; }
+
+echo "Sync Success!"
+
+#Email
+
+
+
 

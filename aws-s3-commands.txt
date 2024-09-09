@@ -1,0 +1,24 @@
+snap install aws-cli --classic - install aws cli
+aws configure - add account
+aws configure list - list account
+
+command: aws s3
+
+s3://bucketname/filename - identifying bucket or file
+
+actions:
+
+rm - remove file 
+
+cp - copy file to and from the bucket - file to bucket - bucketfile to localdir
+
+ls - list of bucket
+   >>add "bucketname -recursive" - display the files in bucket
+
+mb - make bucket - add bucket name s3://
+
+sync localdir bucketname - copy dir content to bucket 
+   >>add last "-delete" - this option deletes files not existing in the localdir
+ 
+
+     

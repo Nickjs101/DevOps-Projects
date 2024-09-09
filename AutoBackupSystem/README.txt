@@ -19,8 +19,8 @@ tar for compression
 GNUPg for encryption
 
 Process:
-1. install the neccessary tools
-2. compress the files
-3. encrypt the files
-4. transfer the files to s3 bucket
-5. send notifications
+Note: Ensure that aws account is setup & install the neccessary tools
+1. compress the files
+2. encrypt the files
+3. transfer the files to s3 bucket
+4. send notifications
